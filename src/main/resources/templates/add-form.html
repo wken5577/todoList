@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class = "main">
+    <header class = "header-title">
+        <h1 class = "title">
+            TodoList
+        </h1>
+    </header>
+
+    <main class = "add-work">
+        <h2>할일 추가</h2>
+
+        <form th:action="@{/post/new}" action="#" method="post" class = "add-form" th:object = "${post}">
+
+            <div class ="form-content1">
+                <label for = "todo">해야할 일</label>
+                <input class = "inputBox" type="text" id = "todo" placeholder="오늘할일"
+                       th:name = "todoTitle" th:field = "*{todoTitle}" th:errorclass = "field-error-input" />
+                <div class ="field-error" th:errors="*{todoTitle}"></div>
+            </div>
+
+
+            <div class = "form-content2">
+                <label for = "doing-person">해야할 사람</label>
+                <input class = "inputBox" type="text" id = "doing-person"
+                       th:name = "person" th:field = "*{person}" th:errorclass = "field-error-input" />
+                <div class ="field-error" th:errors="*{person}"></div>
+            </div>
+
+            <div class = "form-content3">
+                <label for = "memo">메모</label>
+                <textarea  id = "memo" th:name = "memo" th:field = "*{memo}"></textarea>
+            </div>
+
+            <div class = "form-content4">
+                <span>우선순위</span>
+
+                <label for = "primary1">1 : </label>
+                <input type="radio" id = "primary1" name = "primary" value = "1" />
+
+                <label for = "primary2">2 : </label>
+                <input type="radio" id = "primary2" name = "primary" value = "2" />
+
+                <label for = "primary3">3 : </label>
+                <input type="radio" id = "primary3" name = "primary" value = "3" />
+            </div>
+
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+            </div>
+
+            <div class = "buttons">
+                <button type = "submit" class = "submit">Submit</button>
+                <button type = "button" class = "cancel">Cancel</button>
+            </div>
+
+        </form>
+
+    </main>
+
+</div>
+
+<script src = "/form-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To do List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class = "main">
+  <header class = "header-title">
+    <h1 class = "title">
+      TodoList
+    </h1>
+    <button class = "add-button">새로운 할일 추가</button>
+
+  </header>
+
+
+  <main class = "main-content">
+    <section class = "todo">
+      <h2 class = "todo-title">To Do</h2>
+
+      <div class ="todo-content-box" th:each ="post : ${todo}">
+        <span class = "postId" th:text = "${post.id}">1</span>
+        <h3 class = "todo-content-title" th:text = "${post.todoTitle}"> 오늘 할일</h3>
+        <span th:text = "|해야할 사람 : ${post.person}|">해야할 사람 : 1</span>
+        <p th:text = "|메모 : ${post.memo}|">메모 : </p>
+        <strong th:text = "|우선순위 : ${post.primary}|">우선순위 : </strong>
+        <button class ="move"></button>
+      </div>
+    </section>
+
+    <section class = "now-doing">
+      <h2 class = "todo-title">Now Doing</h2>
+
+      <div class ="todo-content-box" th:each ="post : ${nowDoing}">
+        <span class = "postId" th:text = "${post.id}">1</span>
+        <h3 class = "todo-content-title" th:text = "${post.todoTitle}"> 오늘 할일</h3>
+        <span th:text = "|해야할 사람 : ${post.person}|">해야할 사람 : 1</span>
+        <p th:text = "|메모 : ${post.memo}|">메모 : </p>
+        <strong th:text = "|우선순위 : ${post.primary}|">우선순위 : </strong>
+        <button class ="move"></button>
+      </div>
+
+    </section>
+
+
+    <section class = "finish">
+      <h2 class = "todo-title">Finish!</h2>
+
+        <div class ="todo-content-box" th:each ="post : ${finish}">
+        <h3 class = "todo-content-title" th:text = "${post.todoTitle}"> 오늘 할일</h3>
+          <span th:text = "|해야할 사람 : ${post.person}|">해야할 사람 : 1</span>
+          <p th:text = "|메모 : ${post.memo}|">메모 : </p>
+          <strong th:text = "|우선순위 : ${post.primary}|">우선순위 : </strong>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script src = "/script.js"></script>
+
+</body>
+</html>
