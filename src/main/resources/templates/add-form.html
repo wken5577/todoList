@@ -44,21 +44,15 @@
             </div>
 
             <div class = "form-content4">
-                <span>우선순위</span>
-
-                <label for = "primary1">1 : </label>
-                <input type="radio" id = "primary1" name = "primary" value = "1" />
-
-                <label for = "primary2">2 : </label>
-                <input type="radio" id = "primary2" name = "primary" value = "2" />
-
-                <label for = "primary3">3 : </label>
-                <input type="radio" id = "primary3" name = "primary" value = "3" />
+                <div>우선순위</div>
+                <div th:each="primary:${primaryTypes}">
+                    <label th:for = "${#ids.next('primaryTypes')}" th:text = "|${primary.description} : |">1 : </label>
+                    <input type="radio" name = "primary" th:field = "*{primaryTypes}" th:value ="${primary.name()}" />
+                </div>
+                <div class ="field-error" th:errors="*{primaryTypes}"></div>
             </div>
 
-            <div th:if="${#fields.hasGlobalErrors()}">
-                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
-            </div>
+
 
             <div class = "buttons">
                 <button type = "submit" class = "submit">Submit</button>

@@ -20,14 +20,10 @@ public class PostService {
     private final PostRepository postRepository;
 
 
-    public void createPost(String todoTitle, String person, String memo, Integer primary) {
-        PrimaryScore primaryScore;
-        if(primary == 1) primaryScore = PrimaryScore.FIRST;
-        else if(primary == 2) primaryScore = PrimaryScore.SECOND;
-        else primaryScore = PrimaryScore.THIRD;
-
+    public void createPost(String todoTitle, String person, String memo, PrimaryScore primaryScore) {
         Post post = new Post(todoTitle, person, memo, primaryScore);
         postRepository.save(post);
+
     }
 
 

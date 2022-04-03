@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import toy.todoList.entity.NowStatus;
+import toy.todoList.entity.PrimaryScore;
 import toy.todoList.service.PostService;
 import toy.todoList.web.dto.CreatePostDto;
 import toy.todoList.web.dto.PostResponseDto;
@@ -21,6 +22,7 @@ public class IndexController {
     @GetMapping("/post/new")
     public String getAddForm(Model model) {
         model.addAttribute("post", new CreatePostDto());
+        model.addAttribute("primaryTypes", PrimaryScore.values());
 
         return "add-form";
     }

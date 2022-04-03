@@ -1,8 +1,10 @@
 package toy.todoList.web.dto;
 
 import lombok.Data;
+import toy.todoList.entity.PrimaryScore;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Data
@@ -16,6 +18,7 @@ public class CreatePostDto {
 
     private String memo;
 
-    private Integer primary;
+    @NotNull
+    private PrimaryScore primaryTypes;
 
 }
